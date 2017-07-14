@@ -331,6 +331,8 @@ typedef enum {
 #define SRS_PP_PEG_POINT_HEADING        "peg_point_heading"
 /** peg_point_height projection parameter */
 #define SRS_PP_PEG_POINT_HEIGHT         "peg_point_height"
+/** sweep angle axis projection parameter - geostationary satellite */
+#define SRS_PP_SWEEP                    "sweep"
 
 /** Linear unit Meter */
 #define SRS_UL_METER            "Meter"
