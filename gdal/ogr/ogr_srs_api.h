@@ -709,7 +709,7 @@ OGRErr CPL_DLL OSRSetIGH( OGRSpatialReferenceH hSRS );
 /** GEOS - Geostationary Satellite View */
 OGRErr CPL_DLL OSRSetGEOS( OGRSpatialReferenceH hSRS,
                            double dfCentralMeridian, double dfSatelliteHeight,
-                           double dfFalseEasting, double dfFalseNorthing );
+                           double dfFalseEasting, double dfFalseNorthing, double dfSweepAngleAxis );
 
 /** Gauss Schreiber Transverse Mercator */
 OGRErr CPL_DLL OSRSetGaussSchreiberTMercator( OGRSpatialReferenceH hSRS,

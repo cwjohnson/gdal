@@ -81,6 +81,7 @@ static const char * const papszParameters[] =
     SRS_PP_PEG_POINT_LONGITUDE,  // For SCH.
     SRS_PP_PEG_POINT_HEADING,    // For SCH.
     SRS_PP_PEG_POINT_HEIGHT,     // For SCH.
+    SRS_PP_SWEEP,                // For GEOS
     NULL
 };
 
@@ -453,6 +454,7 @@ static const char * const papszProjWithParms[] = {
     SRS_PP_SATELLITE_HEIGHT,
     SRS_PP_FALSE_EASTING,
     SRS_PP_FALSE_NORTHING,
+    SRS_PP_SWEEP,
     NULL,
 
     SRS_PT_KROVAK,

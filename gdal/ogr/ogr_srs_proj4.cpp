@@ -1977,12 +1977,16 @@ OGRErr OGRSpatialReference::exportToProj4( char ** ppszProj4 ) const
     {
         CPLsnprintf(
              szProj4 + strlen(szProj4), sizeof(szProj4) - strlen(szProj4),
-             "+proj=geos +lon_0=%.16g +h=%.16g +x_0=%.16g +y_0=%.16g +sweep=%c ",
+             "+proj=geos +lon_0=%.16g +h=%.16g +x_0=%.16g +y_0=%.16g ",
              GetNormProjParm(SRS_PP_CENTRAL_MERIDIAN, 0.0),
              GetNormProjParm(SRS_PP_SATELLITE_HEIGHT, 35785831.0),
              GetNormProjParm(SRS_PP_FALSE_EASTING, 0.0),
-             GetNormProjParm(SRS_PP_FALSE_NORTHING, 0.0),
-             GetNormProjParm(SRS_PP_SWEEP, 0.0) > 0.0 ? 'x' : 'y' );
+             GetNormProjParm(SRS_PP_FALSE_NORTHING, 0.0) );
+        if (GetNormProjParm(SRS_PP_SWEEP, 0.0) > 0.0) {
+            CPLsnprintf(
+                    szProj4 + strlen(szProj4), sizeof(szProj4) - strlen(szProj4),
+                    "+sweep=x " );
+        }
     }
     else if( EQUAL(pszProjection, SRS_PT_LAMBERT_CONFORMAL_CONIC_2SP)
              || EQUAL(pszProjection,
