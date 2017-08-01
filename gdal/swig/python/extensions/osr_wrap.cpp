@@ -3923,9 +3923,9 @@ SWIGINTERN OGRErr OSRSpatialReferenceShadow_SetGH(OSRSpatialReferenceShadow *sel
 SWIGINTERN OGRErr OSRSpatialReferenceShadow_SetIGH(OSRSpatialReferenceShadow *self){
     return OSRSetIGH( self );
   }
-SWIGINTERN OGRErr OSRSpatialReferenceShadow_SetGEOS(OSRSpatialReferenceShadow *self,double cm,double satelliteheight,double fe,double fn){
+SWIGINTERN OGRErr OSRSpatialReferenceShadow_SetGEOS(OSRSpatialReferenceShadow *self,double cm,double satelliteheight,double fe,double fn,double sweep=0.0){
     return OSRSetGEOS( self, cm, satelliteheight,
-                       fe, fn );
+                       fe, fn, sweep );
   }
 SWIGINTERN OGRErr OSRSpatialReferenceShadow_SetGnomonic(OSRSpatialReferenceShadow *self,double clat,double clong,double fe,double fn){
     return OSRSetGnomonic( self, clat, clong,
@@ -5395,6 +5395,17 @@ SWIGINTERN PyObject *SRS_PP_PEG_POINT_HEIGHT_swigconstant(PyObject *SWIGUNUSEDPA
   d = PyModule_GetDict(module);
   if (!d) return NULL;
   SWIG_Python_SetConstant(d, "SRS_PP_PEG_POINT_HEIGHT",SWIG_FromCharPtr("peg_point_height"));
+  return SWIG_Py_Void();
+}
+
+
+SWIGINTERN PyObject *SRS_PP_SWEEP_swigconstant(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *module;
+  PyObject *d;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigconstant", &module)) return NULL;
+  d = PyModule_GetDict(module);
+  if (!d) return NULL;
+  SWIG_Python_SetConstant(d, "SRS_PP_SWEEP",SWIG_FromCharPtr("sweep"));
   return SWIG_Py_Void();
 }
 
@@ -9874,6 +9885,7 @@ SWIGINTERN PyObject *_wrap_SpatialReference_SetGEOS(PyObject *SWIGUNUSEDPARM(sel
   double arg3 ;
   double arg4 ;
   double arg5 ;
+  double arg6 = (double) 0.0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   double val2 ;
@@ -9884,17 +9896,20 @@ SWIGINTERN PyObject *_wrap_SpatialReference_SetGEOS(PyObject *SWIGUNUSEDPARM(sel
   int ecode4 = 0 ;
   double val5 ;
   int ecode5 = 0 ;
+  double val6 ;
+  int ecode6 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   PyObject * obj3 = 0 ;
   PyObject * obj4 = 0 ;
+  PyObject * obj5 = 0 ;
   char *  kwnames[] = {
-    (char *) "self",(char *) "cm",(char *) "satelliteheight",(char *) "fe",(char *) "fn", NULL 
+    (char *) "self",(char *) "cm",(char *) "satelliteheight",(char *) "fe",(char *) "fn",(char *) "sweep", NULL 
   };
   OGRErr result;
   
-  if (!PyArg_ParseTupleAndKeywords(args,kwargs,(char *)"OOOOO:SpatialReference_SetGEOS",kwnames,&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  if (!PyArg_ParseTupleAndKeywords(args,kwargs,(char *)"OOOOO|O:SpatialReference_SetGEOS",kwnames,&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_OSRSpatialReferenceShadow, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpatialReference_SetGEOS" "', argument " "1"" of type '" "OSRSpatialReferenceShadow *""'"); 
@@ -9920,11 +9935,18 @@ SWIGINTERN PyObject *_wrap_SpatialReference_SetGEOS(PyObject *SWIGUNUSEDPARM(sel
     SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "SpatialReference_SetGEOS" "', argument " "5"" of type '" "double""'");
   } 
   arg5 = static_cast< double >(val5);
+  if (obj5) {
+    ecode6 = SWIG_AsVal_double(obj5, &val6);
+    if (!SWIG_IsOK(ecode6)) {
+      SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "SpatialReference_SetGEOS" "', argument " "6"" of type '" "double""'");
+    } 
+    arg6 = static_cast< double >(val6);
+  }
   {
     if ( bUseExceptions ) {
       CPLErrorReset();
     }
-    result = (OGRErr)OSRSpatialReferenceShadow_SetGEOS(arg1,arg2,arg3,arg4,arg5);
+    result = (OGRErr)OSRSpatialReferenceShadow_SetGEOS(arg1,arg2,arg3,arg4,arg5,arg6);
 #ifndef SED_HACKS
     if ( bUseExceptions ) {
       CPLErr eclass = CPLGetLastErrorType();
@@ -15919,6 +15941,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"SRS_PP_PEG_POINT_LONGITUDE_swigconstant", SRS_PP_PEG_POINT_LONGITUDE_swigconstant, METH_VARARGS, NULL},
 	 { (char *)"SRS_PP_PEG_POINT_HEADING_swigconstant", SRS_PP_PEG_POINT_HEADING_swigconstant, METH_VARARGS, NULL},
 	 { (char *)"SRS_PP_PEG_POINT_HEIGHT_swigconstant", SRS_PP_PEG_POINT_HEIGHT_swigconstant, METH_VARARGS, NULL},
+	 { (char *)"SRS_PP_SWEEP_swigconstant", SRS_PP_SWEEP_swigconstant, METH_VARARGS, NULL},
 	 { (char *)"SRS_UL_METER_swigconstant", SRS_UL_METER_swigconstant, METH_VARARGS, NULL},
 	 { (char *)"SRS_UL_FOOT_swigconstant", SRS_UL_FOOT_swigconstant, METH_VARARGS, NULL},
 	 { (char *)"SRS_UL_FOOT_CONV_swigconstant", SRS_UL_FOOT_CONV_swigconstant, METH_VARARGS, NULL},
@@ -16051,7 +16074,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"SpatialReference_SetGS", (PyCFunction) _wrap_SpatialReference_SetGS, METH_VARARGS | METH_KEYWORDS, (char *)"SpatialReference_SetGS(SpatialReference self, double cm, double fe, double fn) -> OGRErr"},
 	 { (char *)"SpatialReference_SetGH", (PyCFunction) _wrap_SpatialReference_SetGH, METH_VARARGS | METH_KEYWORDS, (char *)"SpatialReference_SetGH(SpatialReference self, double cm, double fe, double fn) -> OGRErr"},
 	 { (char *)"SpatialReference_SetIGH", _wrap_SpatialReference_SetIGH, METH_VARARGS, (char *)"SpatialReference_SetIGH(SpatialReference self) -> OGRErr"},
-	 { (char *)"SpatialReference_SetGEOS", (PyCFunction) _wrap_SpatialReference_SetGEOS, METH_VARARGS | METH_KEYWORDS, (char *)"SpatialReference_SetGEOS(SpatialReference self, double cm, double satelliteheight, double fe, double fn) -> OGRErr"},
+	 { (char *)"SpatialReference_SetGEOS", (PyCFunction) _wrap_SpatialReference_SetGEOS, METH_VARARGS | METH_KEYWORDS, (char *)"SpatialReference_SetGEOS(SpatialReference self, double cm, double satelliteheight, double fe, double fn, double sweep=0.0) -> OGRErr"},
 	 { (char *)"SpatialReference_SetGnomonic", (PyCFunction) _wrap_SpatialReference_SetGnomonic, METH_VARARGS | METH_KEYWORDS, (char *)"SpatialReference_SetGnomonic(SpatialReference self, double clat, double clong, double fe, double fn) -> OGRErr"},
 	 { (char *)"SpatialReference_SetHOM", (PyCFunction) _wrap_SpatialReference_SetHOM, METH_VARARGS | METH_KEYWORDS, (char *)"SpatialReference_SetHOM(SpatialReference self, double clat, double clong, double azimuth, double recttoskew, double scale, double fe, double fn) -> OGRErr"},
 	 { (char *)"SpatialReference_SetHOM2PNO", (PyCFunction) _wrap_SpatialReference_SetHOM2PNO, METH_VARARGS | METH_KEYWORDS, (char *)"SpatialReference_SetHOM2PNO(SpatialReference self, double clat, double dfLat1, double dfLong1, double dfLat2, double dfLong2, double scale, double fe, double fn) -> OGRErr"},

@@ -555,9 +555,9 @@ public:
 
 %feature( "kwargs" ) SetGEOS;
   OGRErr SetGEOS( double cm, double satelliteheight,
-                double fe, double fn ) {
+                double fe, double fn, double sweep = 0.0) {
     return OSRSetGEOS( self, cm, satelliteheight,
-                       fe, fn );
+                       fe, fn, sweep );
   }
 
 %feature( "kwargs" ) SetGnomonic;
