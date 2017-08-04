@@ -433,6 +433,7 @@ def osr_proj4_11():
                      '+proj=goode +lon_0=2 +x_0=3 +y_0=4',
                      '+proj=igh',
                      '+proj=geos +lon_0=2 +h=1 +x_0=3 +y_0=4',
+                     '+proj=geos +lon_0=2 +h=1 +x_0=3 +y_0=4 +sweep=x',
                      '+proj=lcc +lat_1=1 +lat_0=1 +lon_0=2 +k_0=2 +x_0=3 +y_0=4',
                      '+proj=lcc +lat_1=-10 +lat_2=30 +lat_0=60 +lon_0=2 +x_0=3 +y_0=4',
                      '+proj=lcc +lat_1=-10 +lat_2=30 +lat_0=-10 +lon_0=2 +x_0=3 +y_0=4',
@@ -984,6 +985,27 @@ def osr_proj4_27():
 
     if got.find('+proj=geos +h=35785831 +lon_0=0 +datum=WGS84 +sweep=x +units=m') < 0:
         gdaltest.post_reason( 'fail' )
+        print(got)
+        return 'fail'
+
+    srs = osr.SpatialReference()
+    srs.ImportFromProj4( "+proj=geos +h=35785831 +lon_0=0 +datum=WGS84 +sweep=x +units=m" )
+    got = srs.ExportToWkt()
+    if got.find('"sweep",1') < 0:
+        print(got)
+        return 'fail'
+
+    srs = osr.SpatialReference()
+    srs.ImportFromProj4( "+proj=geos +h=35785831 +lon_0=0 +datum=WGS84 +sweep=y +units=m" )
+    got = srs.ExportToWkt()
+    if got.find('"sweep",0') < 0:
+        print(got)
+        return 'fail'
+
+    srs = osr.SpatialReference()
+    srs.ImportFromProj4( "+proj=geos +h=35785831 +lon_0=0 +datum=WGS84 +units=m" )
+    got = srs.ExportToWkt()
+    if got.find('"sweep",0') < 0:
         print(got)
         return 'fail'
 

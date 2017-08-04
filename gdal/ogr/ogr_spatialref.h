@@ -376,7 +376,7 @@ class CPL_DLL OGRSpatialReference
 
     /** Geostationary Satellite */
     OGRErr      SetGEOS( double dfCentralMeridian, double dfSatelliteHeight,
-                         double dfFalseEasting, double dfFalseNorthing );
+                         double dfFalseEasting, double dfFalseNorthing, double dfSweepAngleAxis = 0.0 );
 
     /** Goode Homolosine */
     OGRErr      SetGH( double dfCentralMeridian,

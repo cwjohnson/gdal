@@ -4488,7 +4488,8 @@ OGRErr OSRSetIGH( OGRSpatialReferenceH hSRS )
 OGRErr OGRSpatialReference::SetGEOS( double dfCentralMeridian,
                                      double dfSatelliteHeight,
                                      double dfFalseEasting,
-                                     double dfFalseNorthing )
+                                     double dfFalseNorthing,
+                                     double dfSweepAngleAxis)
 
 {
     SetProjection( SRS_PT_GEOSTATIONARY_SATELLITE );
@@ -4496,6 +4497,7 @@ OGRErr OGRSpatialReference::SetGEOS( double dfCentralMeridian,
     SetNormProjParm( SRS_PP_SATELLITE_HEIGHT, dfSatelliteHeight );
     SetNormProjParm( SRS_PP_FALSE_EASTING, dfFalseEasting );
     SetNormProjParm( SRS_PP_FALSE_NORTHING, dfFalseNorthing );
+    SetNormProjParm( SRS_PP_SWEEP, dfSweepAngleAxis);
 
     return OGRERR_NONE;
 }
@@ -4508,14 +4510,15 @@ OGRErr OSRSetGEOS( OGRSpatialReferenceH hSRS,
                    double dfCentralMeridian,
                    double dfSatelliteHeight,
                    double dfFalseEasting,
-                   double dfFalseNorthing )
+                   double dfFalseNorthing,
+                   double dfSweepAngleAxis)
 
 {
     VALIDATE_POINTER1( hSRS, "OSRSetGEOS", OGRERR_FAILURE );
 
     return reinterpret_cast<OGRSpatialReference *>(hSRS)->SetGEOS(
         dfCentralMeridian, dfSatelliteHeight,
-        dfFalseEasting, dfFalseNorthing );
+        dfFalseEasting, dfFalseNorthing, dfSweepAngleAxis );
 }
 
 /************************************************************************/

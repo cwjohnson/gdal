@@ -400,6 +400,9 @@ SRS_PP_PEG_POINT_HEADING = _osr.SRS_PP_PEG_POINT_HEADING
 _osr.SRS_PP_PEG_POINT_HEIGHT_swigconstant(_osr)
 SRS_PP_PEG_POINT_HEIGHT = _osr.SRS_PP_PEG_POINT_HEIGHT
 
+_osr.SRS_PP_SWEEP_swigconstant(_osr)
+SRS_PP_SWEEP = _osr.SRS_PP_SWEEP
+
 _osr.SRS_UL_METER_swigconstant(_osr)
 SRS_UL_METER = _osr.SRS_UL_METER
 
@@ -919,7 +922,7 @@ class SpatialReference(_object):
 
 
     def SetGEOS(self, *args, **kwargs):
-        """SetGEOS(SpatialReference self, double cm, double satelliteheight, double fe, double fn) -> OGRErr"""
+        """SetGEOS(SpatialReference self, double cm, double satelliteheight, double fe, double fn, double sweep=0.0) -> OGRErr"""
         return _osr.SpatialReference_SetGEOS(self, *args, **kwargs)
 
 
